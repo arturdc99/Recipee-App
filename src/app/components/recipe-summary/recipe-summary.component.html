@@ -1,0 +1,17 @@
+<div class="recipe panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ recipe.title }}</h3>
+    </div>
+    <div class="panel-body">
+        <div class="cover-photo-holder" style="float: right">
+            <img src="{{ recipe.cover_photo ? recipe.cover_photo : '/assets/empty_bowl.png' }}">
+        </div>
+        <p>{{ recipe.description }}</p>
+        <div>
+            <div style="float: left; font-weight: bold; width: 150px">Preparation Time</div>
+            <div>{{ recipe.preparation_time }} </div>
+            <div style="float: left; font-weight: bold; width: 150px">Feeds How Many</div>
+            <div>{{ recipe.feeds_this_many }} </div>
+        </div>
+    </div>
+</div>
