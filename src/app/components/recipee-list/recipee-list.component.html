@@ -1,9 +1,15 @@
-<h1>These are our Recipees</h1>
+<div style="float: right">
+    <input type="button" value="Toggle Dark BG" (click)="toggleBackground()">
+    <input type="button" value="Toggle Font Size" (click)="toggleFontSize()">
+</div>
 
-<app-recipe-summary *ngFor="let recipe of recipes" [recipe]="recipe"></app-recipe-summary>
+<h1 [ngClass]="current_classes"
+    [ngStyle]="current_styles">These are our Recipees</h1>
+
+<app-recipe-summary *ngFor="let recipe of recipes" [recipe]="recipe" (zoomIn)="zoomInOnRecipe(recipe)"></app-recipe-summary>
 
 <div style="clear: both;"></div>
-<div class="newrecipe panel panel-default" style="max-width: 700px;">
+<div class="newrecipe panel panel-default">
     <div class="panel-heading">
         <h4>Add New Recipee</h4>
     </div>

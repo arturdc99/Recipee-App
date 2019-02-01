@@ -1,22 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../../../model/recipe';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+
+import 'rxjs/add/operator/switchMap';
 
 @Component({
-  selector: 'app-recipee-list',
-  templateUrl: './recipee-list.component.html',
-  styleUrls: ['./recipee-list.component.css']
+  selector: 'app-recipe-details',
+  templateUrl: './recipe-details.component.html',
+  styleUrls: ['./recipe-details.component.css']
 })
-export class RecipeeListComponent {
+export class RecipeDetailsComponent implements OnInit {
 
+  recipe: Recipe;
   recipes: Recipe[];
-  recipe_in_progress: Recipe;
-  current_classes: any;
-  current_styles: any;
 
-  constructor() {
-    this.recipe_in_progress = Recipe.createBlank();
-    this.current_classes = { 'darkbg': false };
-    this.current_styles = { 'font-size': '150%' };
+  constructor(private route: ActivatedRoute) {
     this.recipes = [
       Recipe.recipeFromJSON({
         'id': 1,
@@ -127,28 +125,19 @@ export class RecipeeListComponent {
     ];
   }
 
-  public addRecipeClicked() {
-    console.log(JSON.stringify(this.recipe_in_progress, null, 2));
-    this.recipes.unshift(this.recipe_in_progress);
-    this.recipe_in_progress = Recipe.createBlank();
+  ngOnInit() {
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.recipe = this.findRecipeById(parseInt(params.get('recipe_id'), 10));
+    });
   }
 
-  public zoomInOnRecipe(recipe) {
-    console.log('The user clicked on a recipe');
-    console.log(JSON.stringify(recipe, null, 2));
-  }
-
-  public toggleBackground() {
-    const newValue = !this.current_classes['darkbg'];
-    this.current_classes = {'darkbg': newValue};
-  }
-
-  public toggleFontSize() {
-    if (this.current_styles['font-size'] === '150%') {
-      this.current_styles['font-size'] = '175%';
-    } else {
-      this.current_styles['font-size'] = '150%';
+  public findRecipeById(id: number): Recipe {
+    for (let recipe of this.recipes) {
+      if(recipe.id === id) {
+        return recipe;
+      }
     }
+    return null;
   }
 
 }
