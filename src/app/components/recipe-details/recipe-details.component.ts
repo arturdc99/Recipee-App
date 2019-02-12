@@ -132,7 +132,7 @@ export class RecipeDetailsComponent implements OnInit {
   }
 
   public findRecipeById(id: number): Recipe {
-    for (let recipe of this.recipes) {
+    for (const recipe of this.recipes) {
       if(recipe.id === id) {
         return recipe;
       }

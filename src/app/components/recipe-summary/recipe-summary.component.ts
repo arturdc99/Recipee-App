@@ -12,6 +12,10 @@ export class RecipeSummaryComponent implements OnInit {
   recipe: Recipe;
 
   @Output()
+  userClick: EventEmitter<number> = new EventEmitter();
+
+
+  @Output()
   zoomIn: EventEmitter<Recipe> = new EventEmitter();
 
   constructor() { }
@@ -23,4 +27,7 @@ export class RecipeSummaryComponent implements OnInit {
     this.zoomIn.emit(this.recipe);
   }
 
+  public userClicked() {
+    this.userClick.emit(this.recipe.id);
+  }
 }
