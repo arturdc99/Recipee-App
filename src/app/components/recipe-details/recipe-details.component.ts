@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../../../model/recipe';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Location } from '@angular/common';
 
 import 'rxjs/add/operator/switchMap';
 
@@ -14,7 +15,7 @@ export class RecipeDetailsComponent implements OnInit {
   recipe: Recipe;
   recipes: Recipe[];
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private location: Location) {
     this.recipes = [
       Recipe.recipeFromJSON({
         'id': 1,
@@ -138,6 +139,10 @@ export class RecipeDetailsComponent implements OnInit {
       }
     }
     return null;
+  }
+
+  public goBackButtonPressed(): void {
+    this.location.back();
   }
 
 }

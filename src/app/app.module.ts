@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { RecipeeListComponent } from './components/recipee-list/recipee-list.component';
 import { RecipeSummaryComponent } from './components/recipe-summary/recipe-summary.component';
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
+import { EditNewRecipeComponent } from './components/edit-new-recipe/edit-new-recipe.component';
 
 
 @NgModule({
@@ -13,12 +14,17 @@ import { RecipeDetailsComponent } from './components/recipe-details/recipe-detai
     AppComponent,
     RecipeeListComponent,
     RecipeSummaryComponent,
-    RecipeDetailsComponent
+    RecipeDetailsComponent,
+    EditNewRecipeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot([
+      {
+        path: 'editnewrecipe',
+        component: EditNewRecipeComponent
+      },
       {
         path: 'recipes',
         component: RecipeeListComponent

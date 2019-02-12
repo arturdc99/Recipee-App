@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../../../model/recipe';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipee-list',
@@ -13,7 +14,7 @@ export class RecipeeListComponent {
   current_classes: any;
   current_styles: any;
 
-  constructor() {
+  constructor(private router: Router) {
     this.recipe_in_progress = Recipe.createBlank();
     this.current_classes = { 'darkbg': false };
     this.current_styles = { 'font-size': '150%' };
@@ -149,6 +150,14 @@ export class RecipeeListComponent {
     } else {
       this.current_styles['font-size'] = '150%';
     }
+  }
+
+  public userClickedOnRecipe(recipe_id): void { 
+    this.router.navigateByUrl('/recipes/' + recipe_id);
+  }
+
+  public addNewRecipePressed(): void {
+    this.router.navigateByUrl('/editnewrecipe');
   }
 
 }
