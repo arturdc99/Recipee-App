@@ -15,18 +15,23 @@
           <div>{{ recipe.feeds_this_many }} </div>
       </div>
 
-      <h4> Ingredients </h4>
-      <ul>
+      <div id="ingredients">
+        <h4> Ingredients </h4>
+        <ul>
           <li *ngFor="let ingredient of recipe.ingredients">
               {{ ingredient.ingredient }} ({{ ingredient.measure }})
           </li>
-      </ul>
-
-      <h4> Instructions </h4>
-      <ol>
+        </ul>
+      </div>
+      
+      <div id="instructions">
+        <h4> Instructions </h4>
+        <ol>
           <li *ngFor="let instruction of recipe.instructions">
               {{ instruction.instruction }}
           </li>
-      </ol>
+        </ol>
+      </div>
+      
   </div>
 </div>
